@@ -8,9 +8,11 @@ import lombok.Setter;
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public abstract class Parameter {
+public abstract class Parameter<T> {
+    protected T value;
     private String key;
     private String description;
     private boolean hasValue;
     private String[] alias;
+    private boolean isRequired;
 }

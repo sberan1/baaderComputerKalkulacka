@@ -4,20 +4,24 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class ParameterBoolean extends Parameter {
-    private Boolean value = false;
-    private final String[] trueAlias = {"true", "t", "yes", "y", "1"};
-    private final String[] falseAlias = {"false", "f", "no", "n", "0"};
+public class ParameterBoolean extends Parameter<Boolean> {
+    private String[] trueAlias = {"true", "t", "yes", "y", "1"};
+    private String[] falseAlias = {"false", "f", "no", "n", "0"};
+
     public ParameterBoolean(String key, String description, boolean hasValue, String[] alias) {
-        super(key, description, hasValue, alias);
+        super(false, key, description, hasValue, alias, false);
     }
 
     public ParameterBoolean() {
     }
 
+    public void setValue(boolean value) {
+        this.value = value;
+    }
+
     public void setValue(String value) {
         if (value == null) {
-            this.value = false;
+            this.value = true;
         } else {
             for (String trueAlias : trueAlias) {
                 if (value.equals(trueAlias)) {

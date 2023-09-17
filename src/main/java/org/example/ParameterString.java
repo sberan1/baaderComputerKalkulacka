@@ -4,13 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class ParameterString extends Parameter{
-    private String value;
+public class ParameterString extends Parameter<String>{
     private Integer minValue;
     private Integer maxValue;
 
-    public ParameterString(String key, String description, boolean hasValue, String[] alias) {
-        super(key, description, hasValue, alias);
+    public ParameterString(String key, String description, boolean hasValue, String[] alias, boolean isRequired) {
+        super(null, key, description, hasValue, alias, isRequired);
     }
 
     public ParameterString() {

@@ -4,11 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class ParameterOperationsEnum extends Parameter{
-    private Operations value;
+public class ParameterOperationsEnum extends Parameter<Operations>{
 
-    public ParameterOperationsEnum(String key, String description, boolean hasValue, String[] alias) {
-        super(key, description, hasValue, alias);
+    public ParameterOperationsEnum(String key, String description, boolean hasValue, String[] alias, boolean isRequired) {
+        super(null, key, description, hasValue, alias, isRequired);
     }
 
     public ParameterOperationsEnum() {
