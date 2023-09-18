@@ -14,5 +14,5 @@ public abstract class Parameter<T> {
     private String description;
     private boolean hasValue;
     private String[] alias;
-    private boolean isRequired;
+    private boolean required;
 }
