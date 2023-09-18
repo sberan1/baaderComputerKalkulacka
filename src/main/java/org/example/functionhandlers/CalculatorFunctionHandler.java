@@ -35,6 +35,11 @@ public class CalculatorFunctionHandler implements IFunctionHandler{
         ParameterInteger right = (ParameterInteger) getParameter("-r");
         ParameterOperationsEnum operation = (ParameterOperationsEnum) getParameter("-o");
         ParameterBoolean verbose = (ParameterBoolean) getParameter("-v");
+        if (left.getValue() == null || right.getValue() == null || operation.getValue() == null){
+            System.out.println("Missing required parameter");
+            return;
+        }
+
         if (operation.getValue() == Operations.DIVIDE && right.getValue() == 0){
             System.out.println("Cannot divide by 0");
             return;
@@ -66,7 +71,15 @@ public class CalculatorFunctionHandler implements IFunctionHandler{
         switch (parameter.getKey()) {
             case "left":
             case "right":
+                try{
                 ((ParameterInteger)parameter).setValue(Integer.parseInt(args[index + 1]));
+                }
+                catch (NumberFormatException e){
+                    System.out.println("Invalid value");
+                }
+                catch (ArrayIndexOutOfBoundsException e){
+                    System.out.println("Missing value");
+                }
                 return index + 1;
             case "operation":
                 ((ParameterOperationsEnum)parameter).setValue(args[index + 1]);
