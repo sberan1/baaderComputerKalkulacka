@@ -1,4 +1,9 @@
-package org.example;
+package org.example.parameterinitializers;
+
+import org.example.parameters.Parameter;
+import org.example.parameters.ParameterBoolean;
+import org.example.parameters.ParameterInteger;
+import org.example.parameters.ParameterOperationsEnum;
 
 import java.util.HashSet;
 import java.util.Set;

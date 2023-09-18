@@ -1,4 +1,4 @@
-package org.example;
+package org.example.functionhandlers;
 
 public interface IFunctionHandler {
     void handle(String[] args);

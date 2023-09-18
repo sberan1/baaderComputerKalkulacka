@@ -1,4 +1,6 @@
-package org.example;
+package org.example.parameterinitializers;
+
+import org.example.parameters.Parameter;
 
 import java.util.Set;
 

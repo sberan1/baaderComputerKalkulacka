@@ -1,7 +1,8 @@
-package org.example;
+package org.example.parameters;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.enums.Operations;
 
 @Getter @Setter
 public class ParameterOperationsEnum extends Parameter<Operations>{

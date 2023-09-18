@@ -1,4 +1,12 @@
-package org.example;
+package org.example.functionhandlers;
+
+import org.example.parameterinitializers.CalculatorParameterInitializer;
+import org.example.parameterinitializers.IParamaterInitializer;
+import org.example.enums.Operations;
+import org.example.parameters.Parameter;
+import org.example.parameters.ParameterBoolean;
+import org.example.parameters.ParameterInteger;
+import org.example.parameters.ParameterOperationsEnum;
 
 import java.util.Set;
 
@@ -18,15 +26,7 @@ public class CalculatorFunctionHandler implements IFunctionHandler{
                 }
             }
         }
-
-        for (Parameter parameter : parameters) {
-            if (parameter.isRequired() && parameter.getValue() == null)
-            {
-                doMath();
-                return;
-            }
-        }
-
+        doMath();
     }
 
     private void doMath() {
@@ -37,37 +37,26 @@ public class CalculatorFunctionHandler implements IFunctionHandler{
         if (operation.getValue() == Operations.DIVIDE && right.getValue() == 0){
             System.out.println("Cannot divide by 0");
         }
-        if (verbose.getValue() == Boolean.TRUE){
-            switch (operation.getValue()){
-                case PLUS:
-                    System.out.println(left.getValue() + " + " + right.getValue() + " = " + (left.getValue() + right.getValue()));
-                    break;
-                case MINUS:
-                    System.out.println(left.getValue() + " - " + right.getValue() + " = " + (left.getValue() - right.getValue()));
-                    break;
-                case MULTIPLY:
-                    System.out.println(left.getValue() + " * " + right.getValue() + " = " + (left.getValue() * right.getValue()));
-                    break;
-                case DIVIDE:
-                    System.out.println(left.getValue() + " / " + right.getValue() + " = " + (left.getValue() / right.getValue()));
-                    break;
-            }
+        if(verbose.getValue() == Boolean.TRUE && operation.getValue() == Operations.PLUS){
+            System.out.println(left.getValue() + " + " + right.getValue() + " = " + (left.getValue() + right.getValue()));
         }
-        else {
-            switch (operation.getValue()){
-                case PLUS:
-                    System.out.println(left.getValue() + right.getValue());
-                    break;
-                case MINUS:
-                    System.out.println(left.getValue() - right.getValue());
-                    break;
-                case MULTIPLY:
-                    System.out.println(left.getValue() * right.getValue());
-                    break;
-                case DIVIDE:
-                    System.out.println(left.getValue() / right.getValue());
-                    break;
-            }
+        else if(verbose.getValue() == Boolean.TRUE && operation.getValue() == Operations.MINUS){
+            System.out.println(left.getValue() + " - " + right.getValue() + " = " + (left.getValue() - right.getValue()));
+        }
+        else if(verbose.getValue() == Boolean.TRUE && operation.getValue() == Operations.DIVIDE) {
+            System.out.println(left.getValue() + " / " + right.getValue() + " = " + (left.getValue() / right.getValue()));
+        }
+        else if (verbose.getValue() == Boolean.TRUE && operation.getValue() == Operations.MULTIPLY) {
+            System.out.println(left.getValue() + " * " + right.getValue() + " = " + (left.getValue() * right.getValue()));
+        }
+        else if (verbose.getValue() == Boolean.FALSE && operation.getValue() == Operations.PLUS){
+            System.out.println(left.getValue() + right.getValue());
+        } else if (verbose.getValue() == Boolean.FALSE && operation.getValue() == Operations.MINUS){
+            System.out.println(left.getValue() - right.getValue());
+        } else if (verbose.getValue() == Boolean.FALSE && operation.getValue() == Operations.DIVIDE){
+            System.out.println(left.getValue() / right.getValue());
+        } else if (verbose.getValue() == Boolean.FALSE && operation.getValue() == Operations.MULTIPLY){
+            System.out.println(left.getValue() * right.getValue());
         }
     }
 
@@ -75,18 +64,18 @@ public class CalculatorFunctionHandler implements IFunctionHandler{
         switch (parameter.getKey()) {
             case "left":
             case "right":
-                parameter.setValue(Integer.parseInt(args[index + 1]));
+                ((ParameterInteger)parameter).setValue(Integer.parseInt(args[index + 1]));
                 return index + 1;
             case "operation":
-                parameter.setValue(args[index + 1]);
+                ((ParameterOperationsEnum)parameter).setValue(args[index + 1]);
                 return index + 1;
             case "verbose":
-                if(args[index + 1].startsWith("-")){
-                    parameter.setValue(true);
+                if(index + 1 >= args.length || args[index + 1].startsWith("-")){
+                    ((ParameterBoolean)parameter).setValue(true);
                     return index;
                 }
                 else {
-                    parameter.setValue(args[index + 1]);
+                    ((ParameterBoolean)parameter).setValue(args[index + 1]);
                     return index + 1;
                 }
             case "help":
