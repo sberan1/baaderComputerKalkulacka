@@ -12,7 +12,7 @@ import java.util.Set;
 
 public class CalculatorFunctionHandler implements IFunctionHandler{
     private final IParamaterInitializer paramaterInitializer = new CalculatorParameterInitializer();
-    private Set<Parameter> parameters = paramaterInitializer.initialize();
+    private final Set<Parameter> parameters = paramaterInitializer.initialize();
     @Override
     public void handle(String[] args) {
         for (int i = 0; i < args.length; i++) {
@@ -27,15 +27,17 @@ public class CalculatorFunctionHandler implements IFunctionHandler{
             }
         }
         doMath();
+
     }
 
-    private void doMath() {
+    private void doMath(){
         ParameterInteger left = (ParameterInteger) getParameter("-l");
         ParameterInteger right = (ParameterInteger) getParameter("-r");
         ParameterOperationsEnum operation = (ParameterOperationsEnum) getParameter("-o");
         ParameterBoolean verbose = (ParameterBoolean) getParameter("-v");
         if (operation.getValue() == Operations.DIVIDE && right.getValue() == 0){
             System.out.println("Cannot divide by 0");
+            return;
         }
         if(verbose.getValue() == Boolean.TRUE && operation.getValue() == Operations.PLUS){
             System.out.println(left.getValue() + " + " + right.getValue() + " = " + (left.getValue() + right.getValue()));
