@@ -1,10 +1,10 @@
-package org.example.parameters;
+package dev.sberan;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class ParameterInteger extends Parameter<Integer>{
+public abstract class ParameterInteger extends Parameter<Integer>{
     private Integer minValue;
     private Integer maxValue;
 
@@ -15,11 +15,13 @@ public class ParameterInteger extends Parameter<Integer>{
     public ParameterInteger() {
     }
 
-    public void setValue(int value) {
+    public void setValue(Integer value) {
         if ((minValue == null || value >= minValue) && (maxValue == null || value <= maxValue)) {
             this.value = value;
         } else {
             System.out.println("Value must be between " + minValue + " and " + maxValue);
         }
     }
+
+
 }

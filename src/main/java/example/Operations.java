@@ -1,4 +1,4 @@
-package org.example.enums;
+package example;
 
 public enum Operations {
     PLUS, MINUS, MULTIPLY, DIVIDE

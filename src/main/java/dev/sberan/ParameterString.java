@@ -1,10 +1,10 @@
-package org.example.parameters;
+package dev.sberan;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class ParameterString extends Parameter<String>{
+public abstract class ParameterString extends Parameter<String>{
     private Integer minValue;
     private Integer maxValue;
 
@@ -23,4 +23,5 @@ public class ParameterString extends Parameter<String>{
             System.out.println("Length must be between " + minValue + " and " + maxValue);
         }
     }
+
 }

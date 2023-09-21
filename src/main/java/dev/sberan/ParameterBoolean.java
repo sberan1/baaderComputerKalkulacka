@@ -1,10 +1,10 @@
-package org.example.parameters;
+package dev.sberan;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class ParameterBoolean extends Parameter<Boolean> {
+public abstract class ParameterBoolean extends Parameter<Boolean> {
     private String[] trueAlias = {"true", "t", "yes", "y", "1"};
     private String[] falseAlias = {"false", "f", "no", "n", "0"};
 
@@ -13,10 +13,6 @@ public class ParameterBoolean extends Parameter<Boolean> {
     }
 
     public ParameterBoolean() {
-    }
-
-    public void setValue(boolean value) {
-        this.value = value;
     }
 
     public void setValue(String value) {
@@ -38,6 +34,5 @@ public class ParameterBoolean extends Parameter<Boolean> {
             System.out.println("Invalid value");
         }
     }
-
 }
 

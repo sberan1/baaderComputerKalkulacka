@@ -1,4 +1,4 @@
-package org.example.parameters;
+package dev.sberan;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,4 +15,5 @@ public abstract class Parameter<T> {
     private boolean hasValue;
     private String[] alias;
     private boolean required;
+    public abstract int action(String[] args, int index);
 }
